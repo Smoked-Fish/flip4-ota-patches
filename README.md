@@ -162,11 +162,11 @@ python edl_backup_windows.py --write flip4-full-emmc.img
 
 ## Credits
 
-- **[bkerler/edl](https://github.com/bkerler/edl)** — the EDL client in `edlclient/`.
+- **[bkerler/edl](https://github.com/bkerler/edl)** - the EDL client in `edlclient/`.
    B. Kerler, licensed **GPLv3**.
-- **[ambercaravalho/tcl-flip-4-root](https://github.com/ambercaravalho/tcl-flip-4-root)**
-  — T440W backup groundwork and the firehose loader.
-- **[libwdi / Zadig](https://github.com/pbatard/libwdi)** — `wdi-simple.exe`, used to
+- **[ambercaravalho/tcl-flip-4-root](https://github.com/ambercaravalho/tcl-flip-4-root)** - T440W backup groundwork.
+- **https://ryjelsum.me/homelab/qm215-kaios-flips/** - The firehose loader 
+- **[libwdi / Zadig](https://github.com/pbatard/libwdi)** - `wdi-simple.exe`, used to
   bind the temporary Windows driver.
 
 ## License
