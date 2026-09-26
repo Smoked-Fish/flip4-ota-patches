@@ -16,7 +16,6 @@ running the build the OTA was made for.
 ## What's here
 
 ```
-ota.zip                  the update to sideload
 edlclient/               EDL client used for the backup
 loader/flip-4-edl.bin    EDL firehose loader for the T440W
 tools/wdi-simple.exe     Windows-only driver installer (see Step 2, Windows)
