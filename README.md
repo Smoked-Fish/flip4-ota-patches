@@ -56,7 +56,7 @@ Each supported build has **three OTA versions**:
    SoftLeft, SoftLeft, SoftRight, SoftLeft, SoftRight, SoftRight
    ```
 
-   That reveals the Developer options menu.
+   That reveals the Developer options menu. The SoftLeft and SoftRight keys are the two at the very top left and right of your phone.
 2. Open **Developer** tab at the bottom of the Device page and set the Debugger option to **ADB**.
 3. Plug the phone into the PC and run `adb devices`. Accept the prompt on the phone
    (tick "always allow"). It should show up as `device`.
