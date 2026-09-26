@@ -1,4 +1,4 @@
-# TCL Flip 4 (T440W) — OTA + full backup
+# TCL Flip 4 (T440W) OTA
 
 A signed A/B OTA for the TCL Flip 4 (T440W), plus the tools to take a full
 eMMC backup of your phone before you flash it.
