@@ -33,6 +33,16 @@ Go to **Settings → Device information**, then scroll down to **Build number**.
 If your build number is `7AC0UM00` you are good to go. You can get the ota patch in releases.
 
 
+### Choosing your OTA
+
+Each supported build has **three OTA versions**:
+
+| File | What it includes | Choose this if... |
+|---|---|---|
+| `ota.zip` | **Root + userinit boot hook** | You want root **and** the ability to run custom scripts at boot |
+| `ota_no_userinit.zip` | **Root without userinit** | You specifically want root but do **not** want the userinit boot hook |
+| `ota_stock.zip` | **Stock system** | Returns the system partion back to stock |
+
 
 ---
 
