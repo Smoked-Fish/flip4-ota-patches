@@ -89,8 +89,7 @@ This makes a complete raw copy of the phone's storage over EDL.If you do get stu
 Read the whole eMMC to a file:
 
 ```bash
-python3 edlclient/edl.py rf flip4-full-emmc.img \
-    --loader=loader/flip-4-edl.bin --memory=emmc --skipresponse
+./edl rf flip4-full-emmc.img --loader=loader/flip-4-edl.bin --memory=emmc --skipresponse
 ```
 
 It takes roughly 15 minutes.
@@ -148,8 +147,7 @@ Put the phone back in EDL (Step 2) and write your backup image back.
 **Linux:**
 
 ```bash
-python3 edlclient/edl.py wf flip4-full-emmc.img \
-    --loader=loader/flip-4-edl.bin --memory=emmc
+./edl wf flip4-full-emmc.img --loader=loader/flip-4-edl.bin --memory=emmc
 ```
 
 **Windows:**
