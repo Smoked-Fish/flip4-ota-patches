@@ -9,7 +9,7 @@ eMMC backup of your phone before you flash it.
 The OTA installs to the inactive slot and switches to it.
 Only flash it on a phone running the build the OTA was made for.
 
-This is possible all partitions in the verified-boot chain and OTA cert trace back to public test keys.
+This is possible because all partitions in the verified-boot chain and OTA cert trace back to public test keys.
 
 ---
 
