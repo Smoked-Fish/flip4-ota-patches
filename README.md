@@ -6,10 +6,10 @@ eMMC backup of your phone before you flash it.
 > **Back up first.** EDL and flashing can brick a phone. Take the backup in Step 2
 > before you flash anything. You do this at your own risk.
 
-The OTA installs to the inactive slot and
-switches to it. Only flash it on a phone
-running the build the OTA was made for.
+The OTA installs to the inactive slot and switches to it.
+Only flash it on a phone running the build the OTA was made for.
 
+This is possible all partitions in the verified-boot chain and OTA cert trace back to public test keys.
 
 ---
 
@@ -39,8 +39,8 @@ Each supported build has **three OTA versions**:
 
 | File | What it includes | Choose this if... |
 |---|---|---|
-| `ota.zip` | **Root + userinit boot hook** | You want root **and** the ability to run custom scripts at boot |
-| `ota_no_userinit.zip` | **Root without userinit** | You specifically want root but do **not** want the userinit boot hook |
+| `ota-debug-permissive-userinit.zip` | **Root + userinit boot hook** | You want root **and** the ability to run custom scripts at boot |
+| `ota-debug-permissive.zip` | **Root without userinit** | You specifically want root but do **not** want the userinit boot hook |
 | `ota_stock.zip` | **Stock system** | Returns the system partion back to stock |
 
 
@@ -92,7 +92,7 @@ Read the whole eMMC to a file:
 ./edl rf flip4-full-emmc.img --loader=loader/flip-4-edl.bin --memory=emmc --skipresponse
 ```
 
-It takes roughly 15 minutes.
+It takes roughly 15 minutes, and the backup will be roughly about 29 GB.
 
 ### Windows
 
