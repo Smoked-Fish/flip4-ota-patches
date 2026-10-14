@@ -11,6 +11,8 @@ Only flash it on a phone running the build the OTA was made for.
 
 This is possible because all partitions in the verified-boot chain and OTA cert trace back to public test keys.
 
+**This has only been tested with Metro by T-Mobile Phones**
+
 ---
 
 ## What's here
