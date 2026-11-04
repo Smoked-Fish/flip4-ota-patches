@@ -674,7 +674,7 @@ export function restoreText(ota, plan, sectorSize) {
         "",
         `Partitions: ${parts.join(", ")}`,
         "",
-        "To write it back, put the phone in EDL mode and, from the flip4-ota-patches folder:",
+        "To write it back manually without the site, put the phone in EDL mode and, from the flip4-ota-patches folder:",
         "",
         "  ./edl wl \"<this folder>\" --loader=loader/flip-4-edl.bin --memory=emmc",
         "",
