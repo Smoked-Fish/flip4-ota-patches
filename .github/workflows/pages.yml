@@ -1,0 +1,49 @@
+﻿name: pages
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  pages:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+
+      - name: Build the page
+        working-directory: web
+        run: npm ci && node build.mjs "$GITHUB_WORKSPACE/site"
+
+      - name: Add each release's OTAs
+        run: |
+          gh api "repos/$GITHUB_REPOSITORY/releases?per_page=100" > releases-raw.json
+          jq '[.[] | select(.draft | not) | {tag: .tag_name, otas: [.assets[] | select(.name | startswith("ota") and endswith(".zip")) | {name, size}]}]' releases-raw.json > site/releases.json
+          for tag in $(jq -r '.[] | select(.otas | length > 0) | .tag' site/releases.json); do
+            gh release download "$tag" --repo "$GITHUB_REPOSITORY" --pattern 'ota*.zip' --dir "site/$tag"
+          done
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+      - uses: actions/deploy-pages@v4
+        id: deploy

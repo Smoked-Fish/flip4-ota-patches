@@ -1,0 +1,186 @@
+﻿<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#101010">
+    <meta name="description" content="Sideload the root OTA onto a TCL Flip 4 (T440W) from the browser, over USB.">
+    <title>Flip 4 OTA</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="module" src="app.js"></script>
+</head>
+<body>
+<main>
+    <header>
+        <svg class="banner" viewBox="0 -1 650 122" role="img" aria-label="flip4 ota"><g fill="currentColor"><rect x="0" y="-0.3" width="70" height="20.6"/><rect x="80" y="-0.3" width="20" height="20.6"/><rect x="160" y="-0.3" width="20" height="20.6"/><rect x="190" y="-0.3" width="60" height="20.6"/><rect x="270" y="-0.3" width="20" height="20.6"/><rect x="320" y="-0.3" width="20" height="20.6"/><rect x="400" y="-0.3" width="60" height="20.6"/><rect x="480" y="-0.3" width="80" height="20.6"/><rect x="580" y="-0.3" width="50" height="20.6"/><rect x="0" y="19.7" width="20" height="20.6"/><rect x="80" y="19.7" width="20" height="20.6"/><rect x="160" y="19.7" width="20" height="20.6"/><rect x="190" y="19.7" width="20" height="20.6"/><rect x="240" y="19.7" width="20" height="20.6"/><rect x="270" y="19.7" width="20" height="20.6"/><rect x="320" y="19.7" width="20" height="20.6"/><rect x="390" y="19.7" width="20" height="20.6"/><rect x="450" y="19.7" width="20" height="20.6"/><rect x="510" y="19.7" width="20" height="20.6"/><rect x="570" y="19.7" width="20" height="20.6"/><rect x="620" y="19.7" width="20" height="20.6"/><rect x="0" y="39.7" width="50" height="20.6"/><rect x="80" y="39.7" width="20" height="20.6"/><rect x="160" y="39.7" width="20" height="20.6"/><rect x="190" y="39.7" width="60" height="20.6"/><rect x="270" y="39.7" width="70" height="20.6"/><rect x="390" y="39.7" width="20" height="20.6"/><rect x="450" y="39.7" width="20" height="20.6"/><rect x="510" y="39.7" width="20" height="20.6"/><rect x="570" y="39.7" width="70" height="20.6"/><rect x="0" y="59.7" width="20" height="20.6"/><rect x="80" y="59.7" width="20" height="20.6"/><rect x="160" y="59.7" width="20" height="20.6"/><rect x="190" y="59.7" width="20" height="20.6"/><rect x="320" y="59.7" width="20" height="20.6"/><rect x="390" y="59.7" width="20" height="20.6"/><rect x="450" y="59.7" width="20" height="20.6"/><rect x="510" y="59.7" width="20" height="20.6"/><rect x="570" y="59.7" width="20" height="20.6"/><rect x="620" y="59.7" width="20" height="20.6"/><rect x="0" y="79.7" width="20" height="20.6"/><rect x="80" y="79.7" width="70" height="20.6"/><rect x="160" y="79.7" width="20" height="20.6"/><rect x="190" y="79.7" width="20" height="20.6"/><rect x="320" y="79.7" width="20" height="20.6"/><rect x="400" y="79.7" width="60" height="20.6"/><rect x="510" y="79.7" width="20" height="20.6"/><rect x="570" y="79.7" width="20" height="20.6"/><rect x="620" y="79.7" width="20" height="20.6"/></g><path d="M70 7.4 L77.6 7.4 L77.6 20 M70 12.6 L72.4 12.6 L72.4 20 M100 7.4 L107.6 7.4 L107.6 20 M100 12.6 L102.4 12.6 L102.4 20 M180 7.4 L187.6 7.4 L187.6 20 M180 12.6 L182.4 12.6 L182.4 20 M250 7.4 L257.6 7.4 L257.6 20 M250 12.6 L252.4 12.6 L252.4 20 M290 7.4 L297.6 7.4 L297.6 20 M290 12.6 L292.4 12.6 L292.4 20 M340 7.4 L347.6 7.4 L347.6 20 M340 12.6 L342.4 12.6 L342.4 20 M460 7.4 L467.6 7.4 L467.6 20 M460 12.6 L462.4 12.6 L462.4 20 M560 7.4 L567.6 7.4 L567.6 20 M560 12.6 L562.4 12.6 L562.4 20 M630 7.4 L637.6 7.4 L637.6 20 M630 12.6 L632.4 12.6 L632.4 20 M30 27.4 L22.4 27.4 L22.4 40 M30 32.6 L27.6 32.6 L27.6 40 M30 27.4 L40 27.4 M30 32.6 L40 32.6 M40 27.4 L50 27.4 M40 32.6 L50 32.6 M50 27.4 L60 27.4 M50 32.6 L60 32.6 M60 27.4 L70 27.4 M60 32.6 L70 32.6 M70 32.6 L77.6 32.6 L77.6 20 M70 27.4 L72.4 27.4 L72.4 20 M102.4 20 L102.4 40 M107.6 20 L107.6 40 M182.4 20 L182.4 40 M187.6 20 L187.6 40 M220 27.4 L212.4 27.4 L212.4 40 M220 32.6 L217.6 32.6 L217.6 40 M220 27.4 L230 27.4 M220 32.6 L230 32.6 M230 27.4 L240 27.4 M230 32.6 L240 32.6 M260 27.4 L267.6 27.4 L267.6 40 M260 32.6 L262.4 32.6 L262.4 40 M292.4 20 L292.4 40 M297.6 20 L297.6 40 M342.4 20 L342.4 40 M347.6 20 L347.6 40 M420 27.4 L412.4 27.4 L412.4 40 M420 32.6 L417.6 32.6 L417.6 40 M420 27.4 L430 27.4 M420 32.6 L430 32.6 M430 27.4 L440 27.4 M430 32.6 L440 32.6 M440 27.4 L450 27.4 M440 32.6 L450 32.6 M470 27.4 L477.6 27.4 L477.6 40 M470 32.6 L472.4 32.6 L472.4 40 M490 32.6 L482.4 32.6 L482.4 20 M490 27.4 L487.6 27.4 L487.6 20 M490 27.4 L500 27.4 M490 32.6 L500 32.6 M500 27.4 L510 27.4 M500 32.6 L510 32.6 M540 27.4 L532.4 27.4 L532.4 40 M540 32.6 L537.6 32.6 L537.6 40 M540 27.4 L550 27.4 M540 32.6 L550 32.6 M550 27.4 L560 27.4 M550 32.6 L560 32.6 M560 32.6 L567.6 32.6 L567.6 20 M560 27.4 L562.4 27.4 L562.4 20 M600 27.4 L592.4 27.4 L592.4 40 M600 32.6 L597.6 32.6 L597.6 40 M600 27.4 L610 27.4 M600 32.6 L610 32.6 M610 27.4 L620 27.4 M610 32.6 L620 32.6 M640 27.4 L647.6 27.4 L647.6 40 M640 32.6 L642.4 32.6 L642.4 40 M50 47.4 L57.6 47.4 L57.6 60 M50 52.6 L52.4 52.6 L52.4 60 M102.4 40 L102.4 60 M107.6 40 L107.6 60 M182.4 40 L182.4 60 M187.6 40 L187.6 60 M260 47.4 L252.4 47.4 L252.4 60 M260 52.6 L257.6 52.6 L257.6 60 M260 52.6 L267.6 52.6 L267.6 40 M260 47.4 L262.4 47.4 L262.4 40 M342.4 40 L342.4 60 M347.6 40 L347.6 60 M412.4 40 L412.4 60 M417.6 40 L417.6 60 M472.4 40 L472.4 60 M477.6 40 L477.6 60 M532.4 40 L532.4 60 M537.6 40 L537.6 60 M642.4 40 L642.4 60 M647.6 40 L647.6 60 M30 67.4 L22.4 67.4 L22.4 80 M30 72.6 L27.6 72.6 L27.6 80 M30 67.4 L40 67.4 M30 72.6 L40 72.6 M40 67.4 L50 67.4 M40 72.6 L50 72.6 M50 72.6 L57.6 72.6 L57.6 60 M50 67.4 L52.4 67.4 L52.4 60 M102.4 60 L102.4 80 M107.6 60 L107.6 80 M182.4 60 L182.4 80 M187.6 60 L187.6 80 M220 67.4 L212.4 67.4 L212.4 80 M220 72.6 L217.6 72.6 L217.6 80 M220 67.4 L230 67.4 M220 72.6 L230 72.6 M230 67.4 L240 67.4 M230 72.6 L240 72.6 M240 67.4 L250 67.4 M240 72.6 L250 72.6 M250 72.6 L257.6 72.6 L257.6 60 M250 67.4 L252.4 67.4 L252.4 60 M280 72.6 L272.4 72.6 L272.4 60 M280 67.4 L277.6 67.4 L277.6 60 M280 67.4 L290 67.4 M280 72.6 L290 72.6 M290 67.4 L300 67.4 M290 72.6 L300 72.6 M300 67.4 L310 67.4 M300 72.6 L310 72.6 M310 67.4 L320 67.4 M310 72.6 L320 72.6 M342.4 60 L342.4 80 M347.6 60 L347.6 80 M412.4 60 L412.4 80 M417.6 60 L417.6 80 M472.4 60 L472.4 80 M477.6 60 L477.6 80 M532.4 60 L532.4 80 M537.6 60 L537.6 80 M600 67.4 L592.4 67.4 L592.4 80 M600 72.6 L597.6 72.6 L597.6 80 M600 67.4 L610 67.4 M600 72.6 L610 72.6 M610 67.4 L620 67.4 M610 72.6 L620 72.6 M642.4 60 L642.4 80 M647.6 60 L647.6 80 M22.4 80 L22.4 100 M27.6 80 L27.6 100 M150 87.4 L157.6 87.4 L157.6 100 M150 92.6 L152.4 92.6 L152.4 100 M182.4 80 L182.4 100 M187.6 80 L187.6 100 M212.4 80 L212.4 100 M217.6 80 L217.6 100 M342.4 80 L342.4 100 M347.6 80 L347.6 100 M400 92.6 L392.4 92.6 L392.4 80 M400 87.4 L397.6 87.4 L397.6 80 M470 87.4 L462.4 87.4 L462.4 100 M470 92.6 L467.6 92.6 L467.6 100 M470 92.6 L477.6 92.6 L477.6 80 M470 87.4 L472.4 87.4 L472.4 80 M532.4 80 L532.4 100 M537.6 80 L537.6 100 M592.4 80 L592.4 100 M597.6 80 L597.6 100 M642.4 80 L642.4 100 M647.6 80 L647.6 100 M10 112.6 L2.4 112.6 L2.4 100 M10 107.4 L7.6 107.4 L7.6 100 M10 107.4 L20 107.4 M10 112.6 L20 112.6 M20 112.6 L27.6 112.6 L27.6 100 M20 107.4 L22.4 107.4 L22.4 100 M90 112.6 L82.4 112.6 L82.4 100 M90 107.4 L87.6 107.4 L87.6 100 M90 107.4 L100 107.4 M90 112.6 L100 112.6 M100 107.4 L110 107.4 M100 112.6 L110 112.6 M110 107.4 L120 107.4 M110 112.6 L120 112.6 M120 107.4 L130 107.4 M120 112.6 L130 112.6 M130 107.4 L140 107.4 M130 112.6 L140 112.6 M140 107.4 L150 107.4 M140 112.6 L150 112.6 M150 112.6 L157.6 112.6 L157.6 100 M150 107.4 L152.4 107.4 L152.4 100 M170 112.6 L162.4 112.6 L162.4 100 M170 107.4 L167.6 107.4 L167.6 100 M170 107.4 L180 107.4 M170 112.6 L180 112.6 M180 112.6 L187.6 112.6 L187.6 100 M180 107.4 L182.4 107.4 L182.4 100 M200 112.6 L192.4 112.6 L192.4 100 M200 107.4 L197.6 107.4 L197.6 100 M200 107.4 L210 107.4 M200 112.6 L210 112.6 M210 112.6 L217.6 112.6 L217.6 100 M210 107.4 L212.4 107.4 L212.4 100 M330 112.6 L322.4 112.6 L322.4 100 M330 107.4 L327.6 107.4 L327.6 100 M330 107.4 L340 107.4 M330 112.6 L340 112.6 M340 112.6 L347.6 112.6 L347.6 100 M340 107.4 L342.4 107.4 L342.4 100 M410 112.6 L402.4 112.6 L402.4 100 M410 107.4 L407.6 107.4 L407.6 100 M410 107.4 L420 107.4 M410 112.6 L420 112.6 M420 107.4 L430 107.4 M420 112.6 L430 112.6 M430 107.4 L440 107.4 M430 112.6 L440 112.6 M440 107.4 L450 107.4 M440 112.6 L450 112.6 M450 107.4 L460 107.4 M450 112.6 L460 112.6 M460 112.6 L467.6 112.6 L467.6 100 M460 107.4 L462.4 107.4 L462.4 100 M520 112.6 L512.4 112.6 L512.4 100 M520 107.4 L517.6 107.4 L517.6 100 M520 107.4 L530 107.4 M520 112.6 L530 112.6 M530 112.6 L537.6 112.6 L537.6 100 M530 107.4 L532.4 107.4 L532.4 100 M580 112.6 L572.4 112.6 L572.4 100 M580 107.4 L577.6 107.4 L577.6 100 M580 107.4 L590 107.4 M580 112.6 L590 112.6 M590 112.6 L597.6 112.6 L597.6 100 M590 107.4 L592.4 107.4 L592.4 100 M630 112.6 L622.4 112.6 L622.4 100 M630 107.4 L627.6 107.4 L627.6 100 M630 107.4 L640 107.4 M630 112.6 L640 112.6 M640 112.6 L647.6 112.6 L647.6 100 M640 107.4 L642.4 107.4 L642.4 100" fill="none" stroke="currentColor" stroke-width="1.3" opacity="0.6"/></svg>
+        <p class="dim">root for the tcl flip 4 (t440w): sideload a signed a/b ota</p>
+    </header>
+
+    <p class="panel bad" data-label="error" id="nousb" hidden>Your browser isn't supported. Use a Chromium-based
+        browser instead.</p>
+
+    <section class="panel" data-label="before">
+        <ul>
+            <li><b>Back up the phone first.</b> Flashing can brick a phone. Take the full eMMC backup or a partial
+                backup.</li>
+            <li class="windows" hidden>On Windows the browser needs the WinUSB driver on the phone in EDL mode:
+                <a href="flip4-edl-driver.zip" download>download the driver helper</a>, unzip it and run
+                install-edl-driver.bat with the phone in EDL mode (it asks for administrator rights once).</li>
+            <li>USB debugging is on: Settings &gt; Device information &gt; More information, press
+                <kbd>SoftLeft SoftLeft SoftRight SoftLeft SoftRight SoftRight</kbd>, then Developer &gt;
+                Debugger &gt; ADB.</li>
+            <li>No adb on this computer? On Windows, run <code>winget install Google.PlatformTools</code> in
+                PowerShell or Command Prompt. On Linux, install it with your package manager, for example
+                <code>sudo apt install adb</code>.</li>
+        </ul>
+    </section>
+
+    <section class="panel" data-label="backup">
+        <p>A raw copy of the whole eMMC is about 29 GB on a new device. Backing up just the partitions that the OTA
+            patch touches is about 4 GB.</p>
+        <ol>
+            <li>Turn the phone off.</li>
+            <li>Hold <kbd>Volume Up</kbd> and <kbd>Volume Down</kbd> together and keep holding while it starts.
+                The screen will go white, or prompt a keypress.</li>
+            <li>Connect, then save the backup. The full backup can take a while.</li>
+        </ol>
+        <div class="buttons">
+            <button id="bconnect" class="primary">connect phone in edl mode</button>
+        </div>
+        <p id="bstorage" class="release" hidden></p>
+        <div id="bmodes" hidden>
+            <label class="check"><input type="radio" name="bmode" value="full" checked>
+                <span id="bmode-full">the whole emmc</span></label>
+            <label class="check"><input type="radio" name="bmode" value="changed">
+                <span id="bmode-changed">only what the ota changes</span></label>
+        </div>
+        <p id="bnofs" class="panel bad" data-label="error" hidden>Your browser can't save the backup. Use a
+            Chromium-based browser on a computer instead.</p>
+        <div class="buttons">
+            <button id="bsave" class="primary" hidden>save backup…</button>
+            <button id="bresume" class="primary" hidden>resume</button>
+            <button id="bstop" hidden>stop</button>
+            <button id="breset" hidden>leave edl mode (restart the phone)</button>
+        </div>
+        <progress id="bprogress" hidden></progress>
+        <p id="brate" class="dim"></p>
+        <p id="bstatus" class="status" hidden></p>
+    </section>
+
+    <section class="panel" data-label="flash ota">
+        <div class="buttons">
+            <button id="connect" class="primary" disabled>connect phone</button>
+        </div>
+        <dl id="phone" hidden></dl>
+        <p id="release" class="release">connect the phone to see the otas for its build</p>
+        <div id="otas"></div>
+        <div class="buttons">
+            <button id="pick" hidden>use a zip from this computer</button>
+            <input id="zip" type="file" accept=".zip" hidden>
+        </div>
+        <p id="chosen" class="dim" hidden></p>
+        <label id="ack" class="check" hidden><input type="checkbox" id="backed-up"> I backed up the phone, and I
+            know flashing can brick it.</label>
+        <div class="buttons">
+            <button id="flash" class="primary" hidden disabled>reboot to sideload and flash</button>
+            <button id="repick" class="primary" hidden>pick the phone in sideload mode</button>
+        </div>
+        <progress id="progress" hidden></progress>
+        <p id="fstatus" class="status" hidden></p>
+        <div id="done" class="panel good" data-label="done" hidden>
+            <p>The phone took the update. On the phone, confirm sideload ran into no errors and choose
+                <b>Reboot system now</b>. The first boot may take longer than usual.</p>
+        </div>
+    </section>
+
+    <section class="panel" data-label="restore">
+        <p>Restore a backup to the phone: a full eMMC image will take a long time, restoring a partial backup will
+            restore only what the OTA patch touches.</p>
+        <ol>
+            <li>Put the phone in EDL mode, and connect.</li>
+            <li>Pick the backup. The page shows what it will write.</li>
+            <li>Tick the box and write it. Leave the phone plugged in until it says done.</li>
+        </ol>
+        <div class="buttons">
+            <button id="rconnect" class="primary">connect phone in edl mode</button>
+        </div>
+        <p id="rstorage" class="release" hidden></p>
+        <div id="rpicks" class="buttons" hidden>
+            <button id="rimage">pick a whole-emmc image…</button>
+            <button id="rfolder">pick a partition folder…</button>
+            <input id="rimagefile" type="file" accept=".img" hidden>
+        </div>
+        <div id="rplan"></div>
+        <div id="rcheck" hidden>
+            <label class="check"><input type="checkbox" id="rverify" checked> read each part back and check it
+                (slower, about twice the time)</label>
+            <label class="check"><input type="checkbox" id="rconfirm"> I know this overwrites what's on the phone
+                with the backup.</label>
+        </div>
+        <div class="buttons">
+            <button id="rwrite" class="primary" hidden disabled>write to the phone</button>
+            <button id="rstop" hidden>stop</button>
+            <button id="rreset" hidden>leave edl mode (restart the phone)</button>
+        </div>
+        <progress id="rprogress" hidden></progress>
+        <p id="rrate" class="dim"></p>
+        <p id="rstatus" class="status" hidden></p>
+    </section>
+
+    <section class="panel" data-label="help">
+        <details>
+            <summary>the phone isn't in the list</summary>
+            <p>The browser lists it by TCL's name for it, PITTI-QRD, not Flip 4 or T440W.</p>
+            <p>Plug the phone in with a cable that carries data, and check USB debugging is on.</p>
+            <p>On Windows the browser needs the phone's adb driver (WinUSB). If <code>adb devices</code> lists
+                the phone, you have it. If not, install the
+                <a href="https://developer.android.com/studio/run/win-usb">Google USB Driver</a>.</p>
+            <p>Linux may need a udev rule to access the device.</p>
+        </details>
+        <details>
+            <summary>the phone in edl mode isn't in the list</summary>
+            <p>In EDL mode the phone is a Qualcomm 9008 device (USB 05C6:9008).</p>
+            <p>On Windows that takes the WinUSB driver. If the list is empty, run the
+                <a href="flip4-edl-driver.zip" download>driver helper</a>, which puts WinUSB on it.</p>
+            <p>Linux may need a udev rule for 05c6:9008.</p>
+            <p>Only one program can use EDL mode at a time, so make sure nothing else is using it.</p>
+        </details>
+        <details>
+            <summary>it doesn't find the phone in sideload mode</summary>
+            <p>In sideload mode the phone is a new USB device to the browser, listed as T440W instead of
+                PITTI-QRD, so the first time you pick it again: press "pick the phone in sideload mode". After
+                that the browser remembers it.</p>
+            <p>You can also sideload the patch yourself with <code>adb sideload ota.zip</code>.</p>
+        </details>
+        <details>
+            <summary>failed flash and won't boot</summary>
+            <p>A failed flash leaves the old slot to boot from, and the phone goes back to it after about 10
+                failed boots. If it doesn't switch back on its own, write your backup in EDL mode. If you didn't
+                make a backup, ask on the <a href="https://discord.gg/F2eGf9CFYB">KaiOS Discord server</a>; you can
+                probably get help there.</p>
+        </details>
+        <details>
+            <summary>without this page</summary>
+            <p>Manual backups can be performed with an EDL client and the correct loader.</p>
+            <p>Get the zip from <a href="https://github.com/Smoked-Fish/flip4-ota-patches/releases">Releases</a>,
+                then <code>adb reboot sideload</code> and <code>adb sideload ota.zip</code>.</p>
+        </details>
+    </section>
+
+    <footer class="dim">
+        <a href="https://github.com/Smoked-Fish/flip4-ota-patches">github</a> ·
+        <a href="https://github.com/Smoked-Fish/Flipfull">flipfull</a>
+    </footer>
+</main>
+<aside id="dock" class="dock panel" data-label="log" hidden>
+    <div class="dock-bar">
+        <span id="dock-count" class="dim"></span>
+        <button id="dock-size">bigger</button>
+        <button id="dock-copy">copy</button>
+        <button id="dock-clear">clear</button>
+        <button id="dock-hide">hide</button>
+    </div>
+    <div id="dock-lines"></div>
+</aside>
+</body>
+</html>

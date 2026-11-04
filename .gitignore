@@ -1,4 +1,7 @@
+.idea
 __pycache__/
 misc-backups/
 usb_driver/
 edl_config.json
+web/node_modules/
+web/dist/

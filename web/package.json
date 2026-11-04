@@ -1,0 +1,19 @@
+﻿{
+  "name": "flip4-ota-web",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs"
+  },
+  "dependencies": {
+    "@yume-chan/adb": "2.6.4",
+    "@yume-chan/adb-credential-web": "2.1.0",
+    "@yume-chan/adb-daemon-webusb": "2.3.2",
+    "fflate": "0.8.3"
+  },
+  "devDependencies": {
+    "@fontsource/dm-mono": "5.3.0",
+    "esbuild": "0.28.2",
+    "figlet": "1.11.4"
+  }
+}
