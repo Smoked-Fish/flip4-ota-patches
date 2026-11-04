@@ -11,9 +11,13 @@ Only flash it on a phone running the build the OTA was made for.
 
 This is possible because all partitions in the verified-boot chain and OTA cert trace back to public test keys.
 
-**This has only been confirmed working with Metro by T-Mobile Phones, I do not have a T-Mobile phone to work with**
+**Confirmed working on both T-Mobile and Metro phones**
 
-If anyone with a T-Mobile phone can dump their system and send it to me I would appreciate it
+---
+
+### [Link to install the patch from a Chromium Browser](https://smoked-fish.github.io/flip4-ota-patches)
+
+So something like Chrome or Edge, does not support firefox
 
 ---
 

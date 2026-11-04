@@ -301,7 +301,7 @@ async function send() {
     sending = true;
     show();
     try {
-        ui.log(`Sending ${ota.name}. The phone installs it as it reads it; don't unplug it.`);
+        ui.log(`Sending ${ota.name}. The phone installs it as it reads it, so don't unplug it.`);
         await sideload(phone.adb, ota.data, ui);
         ui.progress();
         ui.log("Done.", "ok");
