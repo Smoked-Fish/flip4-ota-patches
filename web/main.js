@@ -3,7 +3,7 @@ import { AdbDaemonWebUsbDevice, AdbDaemonWebUsbDeviceManager } from "@yume-chan/
 import { setOtaSource, windows } from "./backup.js";
 import { logger } from "./log.js";
 import {
-    connect, findSideload, inSideload, phoneInfo, readOta, rebootToSideload, sideload, Stop,
+    connect, findSideload, inSideload, newerReleaseFor, phoneInfo, readOta, rebootToSideload, sideload, Stop,
 } from "./sideload.js";
 
 const $ = (id) => document.getElementById(id);
@@ -116,12 +116,16 @@ function listOtas() {
 function showRelease() {
     const build = phone?.info?.build;
     release = phone?.sideload ? releases[0] ?? null : releaseFor(build);
+    const newer = !release && build ? newerReleaseFor(build, releases) : null;
     if (!releasesLoaded) {
         $("release").textContent = "Couldn't load the list of OTAs, so the build can't be checked. Reload the page to try again.";
     } else if (release) {
         $("release").textContent = phone.sideload
             ? `otas for ${release.tag} (the build can't be checked in sideload mode)`
             : `otas for ${release.tag}`;
+    } else if (newer) {
+        $("release").textContent = `Build ${build} needs a system software update to ${newer.tag} first. `
+            + "Install the update on the phone (or restart it if the update is already installed), then reconnect.";
     } else {
         $("release").textContent = `No OTA for build ${build || "unknown"} yet. `
             + `Supported: ${releases.map((r) => r.tag).join(", ") || "none"}.`;
@@ -142,7 +146,10 @@ async function loadReleases() {
         releasesLoaded = false;
     }
     if (!ota && releases[0]) ota = otaFrom(releases[0], releases[0].otas[0]);
-    if (phone) showRelease();
+    if (phone) {
+        if (!phone.sideload) showPhone();
+        showRelease();
+    }
 }
 
 async function useLocalZip(file) {
@@ -190,12 +197,19 @@ async function readChosenOta() {
 }
 
 function showPhone() {
-    const supported = !!releaseFor(phone.info?.build);
+    const build = phone.info?.build;
+    const supported = !!releaseFor(build);
+    const newer = !supported && build ? newerReleaseFor(build, releases) : null;
+    const buildStatus = supported
+        ? "(supported)"
+        : newer
+            ? `(update to ${newer.tag} required)`
+            : "(not supported)";
     const rows = phone.sideload
         ? [["mode", "sideload: waiting for a package. The build can't be checked in this mode."]]
         : [
             ["model", phone.info.model],
-            ["build", `${phone.info.build || "unknown"} ${supported ? "(supported)" : "(not supported)"}`],
+            ["build", `${build || "unknown"} ${buildStatus}`],
             ["slot", `${phone.info.slot.replace("_", "")} (the ota goes on the other one)`],
         ];
     $("phone").replaceChildren(...rows.flatMap(([k, v]) => {
@@ -223,13 +237,17 @@ async function connectPhone() {
             ui.log("Connected to the phone in sideload mode.");
         } else {
             phone.info = await phoneInfo(adb);
+            const newer = newerReleaseFor(phone.info.build, releases);
             if (!/T440/i.test(phone.info.model)) {
                 ui.log(`This is a ${phone.info.model}, not a TCL Flip 4 (T440W).`, "error");
-            } else if (!releaseFor(phone.info.build)) {
+            } else if (releaseFor(phone.info.build)) {
+                ui.log(`Connected: ${phone.info.model} on ${phone.info.build}.`);
+            } else if (newer) {
+                ui.log(`The phone is on older build ${phone.info.build} and needs a system software update to ${newer.tag} before flashing `
+                    + "(check Settings > Device information > Software update, or restart the phone if it already downloaded the update).", "warn");
+            } else {
                 ui.log(`The phone is on build ${phone.info.build || "unknown"}, which has no OTA here: `
                     + "flashing one made for another build can brick the phone.", "error");
-            } else {
-                ui.log(`Connected: ${phone.info.model} on ${phone.info.build}.`);
             }
         }
         showPhone();
