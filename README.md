@@ -39,6 +39,7 @@ Make sure the OTA is even for your phones build.
 Go to **Settings → Device information**, then scroll down to **Build number**. 
 
 If your build number is `7AC0UM00` you are good to go. You can get the ota patch in releases.
+If your phone is on an older factory build (such as `7ABDUMD0`), connect to Wi-Fi or mobile data and install the official system software update first (or restart the phone if it has already downloaded and installed the update in the background) to reach `7AC0UM00`.
 
 
 ### Choosing your OTA

@@ -85,20 +85,40 @@ export async function connect(device, credentials) {
 }
 
 // How the flip 4 displays its build number
-export function buildNumber(systemVersion, vendorVersion) {
-    const noPerso = systemVersion.substring(1, 4) === vendorVersion.substring(1, 4)
-        && vendorVersion.substring(7, 8) !== "0";
-    return noPerso
-        ? vendorVersion.substring(1, 5) + vendorVersion.substring(4, 8)
-        : systemVersion.substring(1, 4) + systemVersion.substring(6, 7) + systemVersion.substring(4, 8);
+export function buildNumber(systemVersion, vendorVersion = "", productVersion = "") {
+    if (!systemVersion) return "";
+    if (vendorVersion) {
+        const noPerso = systemVersion.substring(1, 4) === vendorVersion.substring(1, 4)
+            && vendorVersion.substring(7, 8) !== "0";
+        return noPerso
+            ? vendorVersion.substring(1, 5) + vendorVersion.substring(4, 8)
+            : systemVersion.substring(1, 4) + systemVersion.substring(6, 7) + systemVersion.substring(4, 8);
+    }
+    const main = systemVersion.substring(1, 4) + systemVersion.substring(6, 7);
+    const perso = systemVersion.substring(4, 8);
+    if (productVersion && perso === productVersion.substring(4, 8)) {
+        return `${main}-${systemVersion.substring(7, 8)}`;
+    }
+    return main + perso;
+}
+
+// Check if `build` is an older version of any release tag with the same carrier prefix
+export function newerReleaseFor(build, releases) {
+    if (!build || build.length < 6) return null;
+    const prefix = build.slice(0, 4);
+    const carrier = build.slice(4, 6);
+    return releases.find((r) => r.tag.length >= 6
+        && r.tag.slice(4, 6) === carrier
+        && r.tag.slice(0, 4) > prefix) ?? null;
 }
 
 export async function phoneInfo(adb) {
     const prop = async (key) => (await adb.getProp(key)).trim();
     const system = await prop("ro.tct.ver.system");
     const vendor = await prop("ro.vendor.tct.ver.vendor");
+    const product = await prop("ro.tct.ver.product");
     return {
-        build: system && vendor ? buildNumber(system, vendor) : "",
+        build: buildNumber(system, vendor, product),
         model: await prop("ro.product.model"),
         slot: await prop("ro.boot.slot_suffix"),
         incremental: await prop("ro.build.version.incremental"),
